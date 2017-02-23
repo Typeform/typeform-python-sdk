@@ -1,0 +1,15 @@
+language: python
+python:
+  - "2.7"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "3.6"
+
+install:
+  - python setup.py develop
+  - pip install flake8 flake8-commas flake8-quotes
+
+script:
+  - flake8 .
+  - python setup.py test
