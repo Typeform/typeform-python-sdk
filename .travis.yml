@@ -8,7 +8,7 @@ python:
 
 install:
   - python setup.py develop
-  - pip install flake8 flake8-commas flake8-quotes
+  - pip install -r requirements-dev.txt
 
 script:
   - flake8 .
