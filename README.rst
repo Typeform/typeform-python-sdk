@@ -1,6 +1,9 @@
 typeform
 ========
 
+.. image:: https://travis-ci.org/underdogio/typeform.svg?branch=master
+    :target: https://travis-ci.org/underdogio/typeform
+
 API Client for `TypeForm <https://typeform.com>`_.
 
 At the time of writing this client TypeForm only has a data access API for fetching responses to a given form.
