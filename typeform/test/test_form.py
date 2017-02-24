@@ -59,13 +59,13 @@ class FormTestCase(TestCase):
         )
         self.assertEqual(len(response.answers), 2)
 
-        answers = response.answers
-        self.assertEqual(answers[0].answer, 'test-user@underdog.io')
-        self.assertEqual(answers[0].question, 'What is your email address?')
-        self.assertEqual(answers[0].question_id, 'email_id')
-        self.assertEqual(answers[1].answer, 'It is awesome!')
-        self.assertEqual(answers[1].question, 'What do you think of this client?')
-        self.assertEqual(answers[1].question_id, 'list_id_choice')
+        answers_by_id = dict((answer.question_id, answer) for answer in response.answers)
+        self.assertEqual(answers_by_id['email_id'].answer, 'test-user@underdog.io')
+        self.assertEqual(answers_by_id['email_id'].question, 'What is your email address?')
+        self.assertEqual(answers_by_id['email_id'].question_id, 'email_id')
+        self.assertEqual(answers_by_id['list_id_choice'].answer, 'It is awesome!')
+        self.assertEqual(answers_by_id['list_id_choice'].question, 'What do you think of this client?')
+        self.assertEqual(answers_by_id['list_id_choice'].question_id, 'list_id_choice')
 
     def test_form_get_responses_500(self):
         """
