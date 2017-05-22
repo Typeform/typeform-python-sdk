@@ -16,7 +16,7 @@ class Client(object):
         self.api_key = api_key
         self._client = requests.Session()
         self._client.headers = {
-            'User-Agent': 'python-typeform/0.1.0',
+            'User-Agent': 'python-typeform/0.1.1',
         }
 
     def _request(self, method, path, params=None):
