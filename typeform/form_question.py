@@ -1,10 +1,11 @@
 class FormQuestion(object):
     """TypeForm form question object"""
-    __slots__ = ['_field_id', '_id', '_question']
+    __slots__ = ['_field_id', '_group', '_id', '_question']
 
-    def __init__(self, field_id=None, id=None, question=None):
+    def __init__(self, field_id=None, group=None, id=None, question=None):
         """Constructor for TypeForm form question"""
         self._field_id = field_id
+        self._group = group
         self._id = id
         self._question = question
 
@@ -12,6 +13,11 @@ class FormQuestion(object):
     def field_id(self):
         """The field_id of the question"""
         return self._field_id
+
+    @property
+    def group(self):
+        """The field_id of the question"""
+        return self._group
 
     @property
     def id(self):
@@ -25,6 +31,6 @@ class FormQuestion(object):
 
     def __repr__(self):
         return (
-            'FormQuestion(field_id={field_id!r}, id={id!r}, question={question!r})'
-            .format(field_id=self.field_id, id=self.id, question=self.question)
+            'FormQuestion(field_id={field_id!r}, group={group!r}, id={id!r}, question={question!r})'
+            .format(field_id=self.field_id, group=self.group, id=self.id, question=self.question)
         )

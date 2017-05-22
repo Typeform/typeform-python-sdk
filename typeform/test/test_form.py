@@ -31,17 +31,29 @@ class FormTestCase(TestCase):
 
         self.assertEqual(len(responses), 1)
         self.assertEqual(len(responses.responses), 1)
-        self.assertEqual(len(responses.questions), 2)
+        self.assertEqual(len(responses.questions), 4)
 
         question_by_id = dict((q.id, q) for q in responses.questions)
 
         self.assertEqual(question_by_id['email_id'].id, 'email_id')
         self.assertEqual(question_by_id['email_id'].field_id, 1234)
         self.assertEqual(question_by_id['email_id'].question, 'What is your email address?')
+        self.assertIsNone(question_by_id['email_id'].group)
 
         self.assertEqual(question_by_id['list_id_choice'].id, 'list_id_choice')
         self.assertEqual(question_by_id['list_id_choice'].field_id, 56789)
         self.assertEqual(question_by_id['list_id_choice'].question, 'What do you think of this client?')
+        self.assertIsNone(question_by_id['list_id_choice'].group)
+
+        self.assertEqual(question_by_id['group_1324'].id, 'group_1324')
+        self.assertEqual(question_by_id['group_1324'].field_id, 1324)
+        self.assertEqual(question_by_id['group_1324'].question, 'Question group')
+        self.assertIsNone(question_by_id['group_1324'].group)
+
+        self.assertEqual(question_by_id['quest_id'].id, 'quest_id')
+        self.assertEqual(question_by_id['quest_id'].field_id, 5768)
+        self.assertEqual(question_by_id['quest_id'].question, 'What is your quest?')
+        self.assertEqual(question_by_id['quest_id'].group, 'group_1324')
 
         response = responses[0]
         self.assertEqual(response.token, 'test_response_token')
