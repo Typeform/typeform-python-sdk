@@ -18,6 +18,17 @@ FORM_RESPONSE_200 = {
       'question': 'What do you think of this client?',
       'field_id': 56789
     },
+    {
+      'id': 'group_1324',
+      'question': 'Question group',
+      'field_id': 1324
+    },
+    {
+      'id': 'quest_id',
+      'question': 'What is your quest?',
+      'field_id': 5768,
+      'group': 'group_1324'
+    }
   ],
   'responses': [
     {
