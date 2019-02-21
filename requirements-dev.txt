@@ -2,3 +2,4 @@ coverage
 flake8
 flake8-quotes
 requests-mock
+auto-changelog

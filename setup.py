@@ -1,11 +1,11 @@
 from setuptools import setup, find_packages
 
-with open('README.rst') as fp:
+with open('README.md') as fp:
     long_description = fp.read()
 
 setup(
     name='typeform',
-    version='0.1.1',
+    version='1.0.0',
     description='HTTP API client for TypeForm',
     long_description=long_description,
     keywords=[
@@ -14,26 +14,25 @@ setup(
         'typeform',
         'api',
     ],
-    author='Underdog.io Engineering',
-    author_email='engineering@underdog.io',
-    url='https://github.com/underdogio/typeform',
+    author='Typeform',
+    author_email='michael.solati@typeform.com',
+    url='https://github.com/MichaelSolati/typeform-python-sdk',
     packages=find_packages(),
     install_requires=['requests'],
     test_suite='typeform.test.suite.test_suite',
     license='MIT',
     # https://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Beta',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3',
         'Programming Language :: Python :: 3.3',
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
         'Programming Language :: Python',
     ]
 )
