@@ -1,10 +1,9 @@
-typeform changelog
-==================
+## 1.0.0 (2019-02-21)
 
-## [v0.1.1](https://github.com/underdogio/typeform/tree/v0.1.1)
+##### New Features
 
-- Support form question `group` property
+*  update to support new forms api (9c272626)
 
-## [v0.1.0](https://github.com/underdogio/typeform/tree/v0.1.0)
+### 0.1.1 (2017-05-22)
 
-- Initial release
+### 0.1.0 (2017-02-24)
