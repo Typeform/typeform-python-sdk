@@ -8,6 +8,7 @@ setup(
     version='1.0.0',
     description='HTTP API client for TypeForm',
     long_description=long_description,
+    long_description_content_type='text/markdown',
     keywords=[
         'type',
         'form',
