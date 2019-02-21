@@ -5,8 +5,8 @@ with open('README.md') as fp:
 
 setup(
     name='typeform',
-    version='1.0.0',
-    description='HTTP API client for TypeForm',
+    version='1.0.1',
+    description='Python Client wrapper for Typeform API',
     long_description=long_description,
     long_description_content_type='text/markdown',
     keywords=[
