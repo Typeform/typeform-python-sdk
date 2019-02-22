@@ -115,11 +115,13 @@ class FormsTestCase(TestCase):
         delete removes the correct uid form
         """
         get1Result = self.forms.get(self.formID)
-        self.forms.delete(self.formID)
-        get2Result = self.forms.get(self.formID)
-
         self.assertEqual(get1Result.get('id'), self.formID)
-        self.assertEqual(get2Result.get('code'), 'FORM_NOT_FOUND')
+        self.forms.delete(self.formID)
+        try:
+            self.forms.get(self.formID)
+        except Exception as err:
+            error = str(err)
+        self.assertEqual(error, 'Non existing form with uid %s' % self.formID)
 
     def test_forms_create_has_the_correct_path_and_method(self):
         """
