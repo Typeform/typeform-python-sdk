@@ -14,14 +14,6 @@ def cleanDict(x: dict = {}) -> dict:
     return result
 
 
-def includes(param: any, array: list) -> bool:
-    result = False
-    for value in array:
-        if value == param:
-            result = True
-    return result
-
-
 def mergeDict(x: dict, y: dict) -> dict:
     z = cleanDict(x)
     z.update(cleanDict(y))

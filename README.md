@@ -1,6 +1,6 @@
 # typeform
 
-[![PyPI version](https://badge.fury.io/py/typeform.svg)](https://badge.fury.io/py/typeform) [![Build Status](https://travis-ci.org/MichaelSolati/typeform-python-sdk.svg?branch=master)](https://travis-ci.org/MichaelSolati/typeform-python-sdk)
+[![PyPI version](https://badge.fury.io/py/typeform.svg)](https://badge.fury.io/py/typeform) [![Build Status](https://travis-ci.org/MichaelSolati/typeform-python-sdk.svg?branch=master)](https://travis-ci.org/MichaelSolati/typeform-python-sdk) [![Coverage Status](https://coveralls.io/repos/github/MichaelSolati/typeform-python-sdk/badge.svg?branch=master)](https://coveralls.io/github/MichaelSolati/typeform-python-sdk?branch=master)
 
 Python Client wrapper for [Typeform API](https://developer.typeform.com/)
 
