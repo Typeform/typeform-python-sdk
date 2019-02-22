@@ -1,3 +1,13 @@
+#### 1.0.2 (2019-02-22)
+
+##### Build System / Dependencies
+
+* **coveralls:**  configure coveralls for code coverage (931b537b)
+
+##### Refactors
+
+* **Client:**  return parsed `Response` or raise an `Exception` instead of passing through `Response` (66da5080)
+
 #### 1.0.1 (2019-02-21)
 
 ##### Chores
