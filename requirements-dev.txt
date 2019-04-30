@@ -3,3 +3,4 @@ coveralls
 flake8
 flake8-quotes
 requests-mock
+setuptools

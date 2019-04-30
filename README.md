@@ -61,7 +61,7 @@ Each one of them encapsulates the operations related to it (like listing, updati
 
 ### Forms
 
-### `forms.create(data={})`
+#### `forms.create(data={})`
 
 Creates a form. Returns `dict` of created form. [See docs](https://developer.typeform.com/create/reference/create-form/).
 
