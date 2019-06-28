@@ -2,5 +2,5 @@ coverage
 coveralls
 flake8
 flake8-quotes
+requests
 requests-mock
-setuptools

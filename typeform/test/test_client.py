@@ -22,12 +22,6 @@ class ClientTestCase(TestCase):
 
             history = m.request_history
             self.assertEqual(history[0].url, API_BASE_URL+'/forms')
-            self.assertEqual(history[0].headers, {
-                'User-Agent': 'python-requests/2.21.0',
-                'Accept-Encoding': 'gzip, deflate',
-                'Accept': 'application/json',
-                'Connection': 'keep-alive',
-                'Content-Type': 'application/json',
-                'Authorization': 'bearer %s' % TOKEN,
-                'Accepts': 'application/json'
-            })
+            self.assertEqual(history[0].headers.pop('Content-Type'), 'application/json')
+            self.assertEqual(history[0].headers.pop('Accepts'), 'application/json')
+            self.assertEqual(history[0].headers.pop('Authorization'), 'bearer %s' % TOKEN)

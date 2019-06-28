@@ -9,7 +9,7 @@ from .utils import buildUrlWithParams, mergeDict
 class Client(object):
     """TypeForm API HTTP client"""
 
-    def __init__(self, token, headers: dict = {}):
+    def __init__(self, token: str, headers: dict = {}):
         """Constructor for TypeForm API client"""
         self.__headers = mergeDict({
             'Content-Type': 'application/json',
@@ -21,7 +21,6 @@ class Client(object):
         requestUrl = buildUrlWithParams((API_BASE_URL + url), params)
         requestHeaders = mergeDict(self.__headers, headers)
         requestData = ''
-
         if type(data) is dict:
             requestData = json.dumps(data) if len(data.keys()) > 0 else ''
 

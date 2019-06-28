@@ -10,7 +10,18 @@ def cleanDict(x: dict = {}) -> dict:
     result = {}
     for key in x:
         if x[key] is not None:
-            result[key] = x[key]
+            # Check If List
+            if isinstance(x[key], (list,)):
+                result[key] = ','.join(x[key])
+            # Check If Boolean
+            elif isinstance(x[key], (bool)):
+                if x[key] is True:
+                    result[key] = 'true'
+                else:
+                    result[key] = 'false'
+            # Everything Else (Strings/Numbers)
+            else:
+                result[key] = x[key]
     return result
 
 

@@ -13,7 +13,7 @@ class Forms:
     def messages(self):
         return self.__messages
 
-    def create(self, data={}) -> dict:
+    def create(self, data: dict = {}) -> dict:
         """Creates a form"""
         return self.__client.request('post', '/forms', data=data)
 
@@ -40,7 +40,7 @@ class Forms:
             'workspace_id': workspaceId
         })
 
-    def update(self, uid: str, patch=False, data: any = {}) -> typing.Union[str, dict]:
+    def update(self, uid: str, data: dict = {}, patch: bool = False) -> typing.Union[str, dict]:
         """
         Updates an existing form.
         Defaults to `put`.

@@ -1,12 +1,6 @@
 language: python
 matrix:
   include:
-    - python: 3.3
-      dist: trusty
-      sudo: false
-    - python: 3.4
-      dist: trusty
-      sudo: false
     - python: 3.5
       dist: trusty
       sudo: false

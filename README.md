@@ -12,6 +12,7 @@ Python Client wrapper for [Typeform API](https://developer.typeform.com/)
 - [Reference](#reference)
   - [Create Client](#typeformapi_key)
   - [Forms](#forms)
+  - [Responses](#responses)
 
 ## Installation
 
@@ -56,67 +57,95 @@ pip install typeform
 Client returns the following properties:
 
 - `forms`
+- `responses`
 
 Each one of them encapsulates the operations related to it (like listing, updating, deleting the resource).
 
 ### Forms
 
-#### `forms.create(data={})`
+#### `forms.create(data: dict = {})`
 
 Creates a form. Returns `dict` of created form. [See docs](https://developer.typeform.com/create/reference/create-form/).
 
 ```python
 forms = Typeform('<api_key>').forms
-forms.create({ 'title': 'Hello World' })
+result: dict = forms.create({ 'title': 'Hello World' })
 ```
 
-#### `forms.delete('Form ID')`
+#### `forms.delete(uid: str)`
 
-Deletes the form with the given form_id and all of the form's responses. Return a `str` based on success of deletion, `OK` on success, otherwise an error message. [See docs](https://developer.typeform.com/create/reference/delete-form/).
+Deletes the form with the given form_id and all of the form's responses. Returns a `str` based on success of deletion, `OK` on success, otherwise an error message. [See docs](https://developer.typeform.com/create/reference/delete-form/).
 
 ```python
 forms = Typeform('<api_key>').forms
-forms.delete('abc123') # OK
+result: str = forms.delete('abc123')
 ```
 
-#### `forms.get('Form ID')`
+#### `forms.get(uid: str)`
 
 Retrieves a form by the given form_id. Includes any theme and images attached to the form as references. [See docs](https://developer.typeform.com/create/reference/retrieve-form/).
 
 ```python
 forms = Typeform('<api_key>').forms
-forms.get('abc123')
+result: dict = forms.get('abc123')
 ```
 
-#### `forms.list()`
+#### `forms.list(page: int = None, pageSize: int = None, search: str = None, workspaceId: str = None)`
 
 Retrieves a list of JSON descriptions for all forms in your Typeform account (public and private). Forms are listed in reverse-chronological order based on the last date they were modified. [See docs](https://developer.typeform.com/create/reference/retrieve-form/).
 
 ```python
 forms = Typeform('<api_key>').forms
-forms.list()
+result: dict = forms.list()
 ```
 
-#### `forms.update('Form ID', data={}, patch=False)`
+#### `forms.update(uid: str, patch: bool = False, data: dict = {})`
 
-Updates an existing form. Defaults to `put`. `put` will return the modified form as a `dict` object. `patch` will return a `str` based on success of change, `OK` on success, otherwise an error message. [See `put` docs](https://developer.typeform.com/create/reference/update-form/) or [`patch` docs](https://developer.typeform.com/create/reference/update-form-patch/).
+Updates an existing form. Defaults to `put`. `put` will return the modified form as a `dict` object. `patch` will Returns a `str` based on success of change, `OK` on success, otherwise an error message. [See `put` docs](https://developer.typeform.com/create/reference/update-form/) or [`patch` docs](https://developer.typeform.com/create/reference/update-form-patch/).
 
-#### `forms.messages.get('Form ID')`
+```python
+forms = Typeform('<api_key>').forms
+result: dict = forms.update('abc123', { 'title': 'Hello World, Again' })
+result: str = forms.update('abc123', { 'title': 'Hello World, Again' }, patch=True)
+```
+
+#### `forms.messages.get(uid: str)`
 
 Retrieves the customizable messages for a form (specified by form_id) using the form's specified language. You can format messages with bold (*bold*) and italic (_italic_) text. HTML tags are forbidden. [See docs](https://developer.typeform.com/create/reference/retrieve-custom-form-messages/).
 
 ```python
 forms = Typeform('<api_key>').forms
-forms.messages.get('abc123')
+result: dict = forms.messages.get('abc123')
 ```
 
-#### `forms.messages.update('Form ID', data={})`
+#### `forms.messages.update(uid: str, data={})`
 
-Specifies new values for the customizable messages in a form (specified by form_id). You can format messages with bold (*bold*) and italic (_italic_) text. HTML tags are forbidden. Return a `str` based on success of change, `OK` on success, otherwise an error message. [See docs](https://developer.typeform.com/create/reference/update-custom-messages/).
+Specifies new values for the customizable messages in a form (specified by form_id). You can format messages with bold (*bold*) and italic (_italic_) text. HTML tags are forbidden. Returns a `str` based on success of change, `OK` on success, otherwise an error message. [See docs](https://developer.typeform.com/create/reference/update-custom-messages/).
 
 ```python
 forms = Typeform('<api_key>').forms
-forms.messages.update('abc123', {
-    'label.buttonHint.default': 'New Button Hint'
+result: str = forms.messages.update('abc123', {
+  'label.buttonHint.default': 'New Button Hint'
 })
+```
+
+### Responses
+
+#### `responses.list(uid: str, pageSize: int = None, since: str = None, until: str = None, after: str = None, before: str = None, includedResponseIds: str = None, completed: bool = None, sort: str = None, query: str = None, fields: List[str] = None)`
+
+Returns form responses and date and time of form landing and submission. [See docs](https://developer.typeform.com/responses/reference/retrieve-responses/).
+
+```python
+responses = Typeform('<api_key>').responses
+result: dict = responses.list('abc123')
+```
+
+#### `responses.delete(uid: str, includedTokens: Union[str, List[str]])`
+
+Delete responses to a form. You must specify the `included_tokens` parameter. Returns a `str` based on success of deletion, `OK` on success, otherwise an error message. [See docs](https://developer.typeform.com/responses/reference/delete-responses/).
+
+```python
+responses = Typeform('<api_key>').responses
+result: str = responses.delete('abc123' 'token1')
+result: str = responses.delete('abc123' ['token2', 'token3'])
 ```
