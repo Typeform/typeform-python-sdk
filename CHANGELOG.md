@@ -1,3 +1,14 @@
+### 1.1.0 (2019-06-29)
+
+##### Chores
+
+* **requirements:**  add requirements file and add to dev requirements (35e514c3)
+* **LICENSE:**  re-add original package mantainer (7223e1d9)
+
+##### New Features
+
+* **Responses:**  add responses api, fixes #6 (aeb12487)
+
 #### 1.0.2 (2019-02-22)
 
 ##### Build System / Dependencies
