@@ -153,4 +153,4 @@ result: str = responses.delete('abc123' ['token2', 'token3'])
 
 ## Tests
 
-⚠️⚠️⚠️⚠️⚠️ Don't use your own token to run tests, use a demo account with only few forms
+Check typeform/test/fixtures.py to configure test run.
