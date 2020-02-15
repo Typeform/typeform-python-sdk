@@ -7,7 +7,7 @@ MOCK = True
 TOKEN = os.environ.get('TYPEFORM_TOKEN')
 
 # Tests will be scoped to this workspace.
-WORKSPACE = 'https://api.typeform.com/workspaces/[YOUR WORKSPACE ID]'
+WORKSPACE = 'https://api.typeform.com/workspaces/hn3dNa'
 WORKSPACE_ID = WORKSPACE.split('/')[-1]
 
 if MOCK and (not TOKEN or '[YOUR WORKSPACE ID]' in WORKSPACE):
