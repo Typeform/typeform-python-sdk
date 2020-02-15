@@ -13,6 +13,7 @@ Python Client wrapper for [Typeform API](https://developer.typeform.com/)
   - [Create Client](#typeformapi_key)
   - [Forms](#forms)
   - [Responses](#responses)
+- [Tests](#tests
 
 ## Installation
 
@@ -149,3 +150,7 @@ responses = Typeform('<api_key>').responses
 result: str = responses.delete('abc123' 'token1')
 result: str = responses.delete('abc123' ['token2', 'token3'])
 ```
+
+## Tests
+
+⚠️⚠️⚠️⚠️⚠️ Don't use your own token to run tests, use a demo account with only few forms
