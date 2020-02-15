@@ -2,7 +2,7 @@ from unittest import TestCase
 import requests_mock
 import urllib.parse
 
-from .fixtures import TOKEN
+from .fixtures import TOKEN, WORKSPACE, WORKSPACE_ID
 
 from typeform import Typeform
 from typeform.constants import API_BASE_URL
@@ -11,13 +11,11 @@ from typeform.constants import API_BASE_URL
 class FormsTestCase(TestCase):
     def setUp(self):
         self.forms = Typeform(TOKEN).forms
-        form = self.forms.create({
-            'title': 'title'
-        })
+        form = self.forms.create(dict(title="Form's test form", workspace={'href': WORKSPACE}))
         self.formID = form.get('id')
 
     def tearDown(self):
-        list = self.forms.list()
+        list = self.forms.list(workspaceId=WORKSPACE_ID)
         forms = list.get('items', [])
         for form in forms:
             self.forms.delete(form.get('id'))
@@ -28,10 +26,10 @@ class FormsTestCase(TestCase):
         """
         with requests_mock.mock() as m:
             m.get(API_BASE_URL+'/forms', json={})
-            self.forms.list()
+            self.forms.list(workspaceId=WORKSPACE_ID)
 
             history = m.request_history
-            self.assertEqual(history[0].url, API_BASE_URL+'/forms')
+            self.assertEqual(history[0].url, API_BASE_URL+'/forms?workspace_id={}'.format(WORKSPACE_ID))
             self.assertEqual(history[0].method, 'GET')
 
     def test_forms_correct_params(self):
@@ -40,7 +38,7 @@ class FormsTestCase(TestCase):
         """
         with requests_mock.mock() as m:
             m.get(API_BASE_URL+'/forms', json={})
-            self.forms.list(page=2, pageSize=10, search='hola', workspaceId='abc')
+            self.forms.list(page=2, pageSize=10, search='forms_correct_params', workspaceId=WORKSPACE_ID)
 
             history = m.request_history
             query = history[0].url.split('?')[1]
@@ -48,8 +46,8 @@ class FormsTestCase(TestCase):
 
             self.assertEqual(params.pop('page')[0], '2')
             self.assertEqual(params.pop('page_size')[0], '10')
-            self.assertEqual(params.pop('search')[0], 'hola')
-            self.assertEqual(params.pop('workspace_id')[0], 'abc')
+            self.assertEqual(params.pop('search')[0], 'forms_correct_params')
+            self.assertEqual(params.pop('workspace_id')[0], WORKSPACE_ID)
 
     def test_forms_get_correct_id(self):
         """
@@ -77,7 +75,7 @@ class FormsTestCase(TestCase):
         """
         update updates a form
         """
-        title = 'hola'
+        title = 'forms_update_updates_a_form'
         result = self.forms.update(self.formID, data={
             'title': title
         })
@@ -91,7 +89,7 @@ class FormsTestCase(TestCase):
         result = self.forms.update(self.formID, patch=True, data=[{
             'op': 'replace',
             'path': '/title',
-            'value': 'aloha'
+            'value': 'forms_update_as_patch_updates_a_form'
         }])
 
         self.assertEqual(result, 'OK')
@@ -103,7 +101,7 @@ class FormsTestCase(TestCase):
         with requests_mock.mock() as m:
             m.put(API_BASE_URL+'/forms/'+self.formID, json={})
             self.forms.update(self.formID, data={
-                'title': 'title'
+                'title': 'forms_update_sets_put_method_in_request_by_default'
             })
 
             history = m.request_history
@@ -129,9 +127,7 @@ class FormsTestCase(TestCase):
         """
         with requests_mock.mock() as m:
             m.post(API_BASE_URL+'/forms', json={})
-            self.forms.create({
-                'title': 'hola'
-            })
+            self.forms.create(dict(title='forms_create_has_the_correct_path_and_method', workspace={'href': WORKSPACE}))
 
             history = m.request_history
 
@@ -142,9 +138,7 @@ class FormsTestCase(TestCase):
         """
         create creates a new form
         """
-        createResult = self.forms.create({
-            'title': 'hola'
-        })
+        createResult = self.forms.create(dict(title='forms_create_creates_a_new_form', workspace={'href': WORKSPACE}))
 
         formID = createResult.get('id')
 

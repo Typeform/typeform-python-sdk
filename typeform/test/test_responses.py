@@ -2,7 +2,7 @@ from unittest import TestCase
 import requests_mock
 import urllib.parse
 
-from .fixtures import TOKEN
+from .fixtures import TOKEN, WORKSPACE, WORKSPACE_ID
 
 from typeform import Typeform
 from typeform.constants import API_BASE_URL
@@ -12,13 +12,11 @@ class ResponsesTestCase(TestCase):
     def setUp(self):
         self.forms = Typeform(TOKEN).forms
         self.responses = Typeform(TOKEN).responses
-        form = self.forms.create({
-            'title': 'title'
-        })
+        form = self.forms.create((dict(title="Responses's test form", workspace={'href': WORKSPACE})))
         self.formID = form.get('id')
 
     def tearDown(self):
-        list = self.forms.list()
+        list = self.forms.list(workspaceId=WORKSPACE_ID)
         forms = list.get('items', [])
         for form in forms:
             self.forms.delete(form.get('id'))
@@ -65,7 +63,7 @@ class ResponsesTestCase(TestCase):
 
     def test_list_fetches_responses_with_params(self):
         """
-        get all responses does not throw an error with paramters
+        get all responses does not throw an error with parameters
         """
         result = self.responses.list(
             self.formID, pageSize=100, since='2000-01-01T00:00:00Z', completed=True, fields=['1', '2']
