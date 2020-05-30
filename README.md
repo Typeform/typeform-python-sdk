@@ -119,7 +119,7 @@ forms = Typeform('<api_key>').forms
 result: dict = forms.messages.get('abc123')
 ```
 
-#### `forms.messages.update(uid: str, data={})`
+#### `forms.messages.update(uid: str, data: dict = {})`
 
 Specifies new values for the customizable messages in a form (specified by form_id). You can format messages with bold (*bold*) and italic (_italic_) text. HTML tags are forbidden. Returns a `str` based on success of change, `OK` on success, otherwise an error message. [See docs](https://developer.typeform.com/create/reference/update-custom-messages/).
 
