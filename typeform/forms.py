@@ -63,7 +63,7 @@ class FormMessages:
         """
         return self.__client.request('get', '/forms/%s/messages' % uid)
 
-    def update(self, uid: str, data={}) -> str:
+    def update(self, uid: str, data: dict = {}) -> str:
         """
         Specifies new values for the customizable messages in a form (specified by form_id).
         You can format messages with bold (*bold*) and italic (_italic_) text. HTML tags are forbidden.
