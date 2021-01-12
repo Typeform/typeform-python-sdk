@@ -2,7 +2,7 @@ from unittest import TestCase
 import requests_mock
 import urllib.parse
 
-from .fixtures import TOKEN
+from .fixtures import MOCK, TOKEN, WORKSPACE, WORKSPACE_ID
 
 from typeform import Typeform
 from typeform.constants import API_BASE_URL
@@ -12,22 +12,24 @@ class ResponsesTestCase(TestCase):
     def setUp(self):
         self.forms = Typeform(TOKEN).forms
         self.responses = Typeform(TOKEN).responses
-        form = self.forms.create({
-            'title': 'title'
-        })
-        self.formID = form.get('id')
+        if not MOCK:
+            form = self.forms.create((dict(title="Responses's test form", workspace={'href': WORKSPACE})))
+            self.formID = form.get('id')
+        else:
+            self.formID = "MOCK-FORM-ID"
 
     def tearDown(self):
-        list = self.forms.list()
-        forms = list.get('items', [])
-        for form in forms:
-            self.forms.delete(form.get('id'))
+        if not MOCK:
+            list = self.forms.list(workspaceId=WORKSPACE_ID)
+            forms = list.get('items', [])
+            for form in forms:
+                self.forms.delete(form.get('id'))
 
     def test_list_returns_method_and_path(self):
         """
         get all responses has the correct method and path
         """
-        with requests_mock.mock() as m:
+        with requests_mock.mock(real_http=not MOCK) as m:
             url = API_BASE_URL+'/forms/'+self.formID+'/responses'
             m.get(url, json={})
             self.responses.list(self.formID)
@@ -40,7 +42,7 @@ class ResponsesTestCase(TestCase):
         """
         paramters are sent correctly
         """
-        with requests_mock.mock() as m:
+        with requests_mock.mock(real_http=not MOCK) as m:
             url = API_BASE_URL+'/forms/'+self.formID+'/responses'
             m.get(url, json={})
             self.responses.list(
@@ -60,23 +62,27 @@ class ResponsesTestCase(TestCase):
         """
         get all responses does not throw an error
         """
-        result = self.responses.list(self.formID)
-        self.assertEqual(result.pop('total_items'), 0)
+        with requests_mock.mock(real_http=not MOCK) as m:
+            m.get(API_BASE_URL+'/forms/{}/responses'.format(self.formID), json=dict(total_items=0))
+            result = self.responses.list(self.formID)
+            self.assertEqual(result.pop('total_items'), 0)
 
     def test_list_fetches_responses_with_params(self):
         """
-        get all responses does not throw an error with paramters
+        get all responses does not throw an error with parameters
         """
-        result = self.responses.list(
-            self.formID, pageSize=100, since='2000-01-01T00:00:00Z', completed=True, fields=['1', '2']
-        )
-        self.assertEqual(result.pop('total_items'), 0)
+        with requests_mock.mock(real_http=not MOCK) as m:
+            m.get(API_BASE_URL+'/forms/{}/responses'.format(self.formID), json=dict(total_items=0))
+            result = self.responses.list(
+                self.formID, pageSize=100, since='2000-01-01T00:00:00Z', completed=True, fields=['1', '2']
+            )
+            self.assertEqual(result.pop('total_items'), 0)
 
     def test_delete_one_token_returns_method_and_path(self):
         """
         delete response has the correct method and path when deleting one token
         """
-        with requests_mock.mock() as m:
+        with requests_mock.mock(real_http=not MOCK) as m:
             url = API_BASE_URL+'/forms/'+self.formID+'/responses?included_tokens=1'
             m.delete(url, json={})
             self.responses.delete(self.formID, includedTokens='1')
@@ -89,7 +95,7 @@ class ResponsesTestCase(TestCase):
         """
         delete response has the correct method and path when deleting multiple tokens
         """
-        with requests_mock.mock() as m:
+        with requests_mock.mock(real_http=not MOCK) as m:
             url = API_BASE_URL+'/forms/'+self.formID+'/responses?included_tokens=1%2C2%2C3'
             m.delete(url, json={})
             self.responses.delete(self.formID, includedTokens=['1', '2', '3'])

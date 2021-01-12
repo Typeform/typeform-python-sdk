@@ -6,3 +6,5 @@ dist
 .eggs
 .DS_STORE
 .coverage
+.idea
+.tox
