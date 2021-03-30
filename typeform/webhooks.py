@@ -42,5 +42,3 @@ class Webhooks:
         Return a `str` based on success of deletion, `OK` on success, otherwise an error message.
         """
         return self.__client.request('delete', '/forms/%s/webhooks/%s' % (uid,tag))
-
-    
