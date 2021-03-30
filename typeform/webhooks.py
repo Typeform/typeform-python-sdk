@@ -38,7 +38,7 @@ class Webhooks:
 
     def delete(self, uid: str, tag: str, includedTokens: typing.Union[str, typing.List[str]]) -> str:
         """
-        Delete webhooks to a form. You must specify the `included_tokens`/`includedTokens` parameter.
+        Delete webhooks to a form.
         Return a `str` based on success of deletion, `OK` on success, otherwise an error message.
         """
         return self.__client.request('delete', '/forms/%s/webhooks/%s' % (uid,tag))
