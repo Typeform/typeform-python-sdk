@@ -36,7 +36,7 @@ class Webhooks:
             'put', '/forms/%s/webhooks/%s' % (uid,tag), data=data
         )
 
-    def delete(self, uid: str, tag: str, includedTokens: typing.Union[str, typing.List[str]]) -> str:
+    def delete(self, uid: str, tag: str) -> str:
         """
         Delete webhooks to a form.
         Return a `str` based on success of deletion, `OK` on success, otherwise an error message.
