@@ -9,20 +9,20 @@ class Webhooks:
         """Constructor for Typeform Webhooks class"""
         self.__client = client
 
-    def list(self, uid: str):
+    def list(self, uid: str) -> dict:
         """
         Returns form webhooks and date and time of form landing and submission.
         """
         return self.__client.request('get', '/forms/%s/webhooks' % uid)
 
 
-    def get(self, uid: str, tag: str):
+    def get(self, uid: str, tag: str) -> dict:
         """
         Returns form webhooks and date and time of form landing and submission.
         """
         return self.__client.request('get', '/forms/%s/webhooks/%s' % (uid,tag))
 
-    def create_update(self, uid: str, tag: str, data={}):
+    def create_update(self, uid: str, tag: str, data={}) -> dict:
         """
         Create or update a webhook.
         {
