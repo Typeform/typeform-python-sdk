@@ -20,19 +20,20 @@ class Webhooks:
         """
         Returns form webhooks and date and time of form landing and submission.
         """
-        return self.__client.request('get', '/forms/%s/webhooks/%s' % uid, tag)
+        return self.__client.request('get', '/forms/%s/webhooks/%s' % (uid,tag))
 
-    def create_update(self, uid: str, tag: str, url: str, enabled: bool, secret: str, verify_ssl: bool):
+    def create_update(self, uid: str, tag: str, data={}):
         """
         Create or update a webhook.
+        {
+            'url': url,  str
+            'enabled': enabled,  bool
+            'secret': secret,  str
+            'verify_ssl': verify_ssl  bool
+        }
         """
         return self.__client.request(
-            'put', '/forms/%s/webhooks/%s' % (uid,tag), params={
-            'url': url,
-            'enabled': enabled,
-            'secret': secret,
-            'verify_ssl': verify_ssl
-            }
+            'put', '/forms/%s/webhooks/%s' % (uid,tag), data=data
         )
 
     def delete(self, uid: str, tag: str, includedTokens: typing.Union[str, typing.List[str]]) -> str:
