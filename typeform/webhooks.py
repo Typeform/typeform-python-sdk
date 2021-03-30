@@ -41,6 +41,4 @@ class Webhooks:
         Delete webhooks to a form. You must specify the `included_tokens`/`includedTokens` parameter.
         Return a `str` based on success of deletion, `OK` on success, otherwise an error message.
         """
-        return self.__client.request('delete', '/forms/%s/webhooks/%s' % (uid,tag), params={
-            'included_tokens': includedTokens
-        })
+        return self.__client.request('delete', '/forms/%s/webhooks/%s' % (uid,tag))
