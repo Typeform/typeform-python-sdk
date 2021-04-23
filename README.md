@@ -13,7 +13,7 @@ Python Client wrapper for [Typeform API](https://developer.typeform.com/)
   - [Create Client](#typeformapi_key)
   - [Forms](#forms)
   - [Responses](#responses)
-- [Tests](#tests
+- [Tests](#tests)
 
 ## Installation
 
