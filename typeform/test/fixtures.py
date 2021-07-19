@@ -11,4 +11,4 @@ WORKSPACE = 'https://api.typeform.com/workspaces/hn3dNa'
 WORKSPACE_ID = WORKSPACE.split('/')[-1]
 
 if MOCK and (not TOKEN or '[YOUR WORKSPACE ID]' in WORKSPACE):
-    raise Exception("You need to setup TOKEN and WORKSPACE in fixtures.py")
+    raise Exception('You need to setup TOKEN and WORKSPACE in fixtures.py')

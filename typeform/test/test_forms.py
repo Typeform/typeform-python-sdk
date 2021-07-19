@@ -15,7 +15,7 @@ class FormsTestCase(TestCase):
             form = self.forms.create(dict(title="Form's test form", workspace={'href': WORKSPACE}))
             self.formID = form.get('id')
         else:
-            self.formID = "MOCK-FORM-ID"
+            self.formID = 'MOCK-FORM-ID'
 
     def tearDown(self):
         if not MOCK:
@@ -93,7 +93,7 @@ class FormsTestCase(TestCase):
         update as patch updates a form
         """
         with requests_mock.mock(real_http=not MOCK) as m:
-            m.patch(API_BASE_URL+'/forms/'+self.formID, json="OK")
+            m.patch(API_BASE_URL+'/forms/'+self.formID, json='OK')
             result = self.forms.update(self.formID, patch=True, data=[
                 dict(op='replace', path='/title', value='forms_update_as_patch_updates_a_form')])
 
@@ -125,7 +125,7 @@ class FormsTestCase(TestCase):
             self.assertEqual(get_one_result.get('id'), self.formID)
             self.forms.delete(self.formID)
             m.get(API_BASE_URL + '/forms/{}'.format(self.formID),
-                  json=dict(code="FORM_NOT_FOUND", description="Non existing form with uid {}".format(self.formID)))
+                  json=dict(code='FORM_NOT_FOUND', description='Non existing form with uid {}'.format(self.formID)))
             try:
                 self.forms.get(self.formID)
             except Exception as err:
@@ -153,7 +153,10 @@ class FormsTestCase(TestCase):
             m.post(API_BASE_URL + '/forms', json=dict(id=str(self.formID)))
             m.get(API_BASE_URL + '/forms/{}'.format(self.formID), json=dict(id=str(self.formID)))
 
-            create_result = self.forms.create(dict(title='forms_create_creates_a_new_form', workspace={'href': WORKSPACE}))
+            create_result = self.forms.create(dict(
+                title='forms_create_creates_a_new_form',
+                workspace={'href': WORKSPACE},
+            ))
 
             formID = create_result.get('id')
 
