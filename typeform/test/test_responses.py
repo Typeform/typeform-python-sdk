@@ -16,7 +16,7 @@ class ResponsesTestCase(TestCase):
             form = self.forms.create((dict(title="Responses's test form", workspace={'href': WORKSPACE})))
             self.formID = form.get('id')
         else:
-            self.formID = "MOCK-FORM-ID"
+            self.formID = 'MOCK-FORM-ID'
 
     def tearDown(self):
         if not MOCK:

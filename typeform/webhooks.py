@@ -1,4 +1,3 @@
-import typing
 from .client import Client
 
 
@@ -15,12 +14,11 @@ class Webhooks:
         """
         return self.__client.request('get', '/forms/%s/webhooks' % uid)
 
-
     def get(self, uid: str, tag: str) -> dict:
         """
         Returns form webhooks and date and time of form landing and submission.
         """
-        return self.__client.request('get', '/forms/%s/webhooks/%s' % (uid,tag))
+        return self.__client.request('get', '/forms/%s/webhooks/%s' % (uid, tag))
 
     def create_update(self, uid: str, tag: str, data={}) -> dict:
         """
@@ -33,7 +31,7 @@ class Webhooks:
         }
         """
         return self.__client.request(
-            'put', '/forms/%s/webhooks/%s' % (uid,tag), data=data
+            'put', '/forms/%s/webhooks/%s' % (uid, tag), data=data
         )
 
     def delete(self, uid: str, tag: str) -> str:
@@ -41,4 +39,4 @@ class Webhooks:
         Delete webhooks to a form.
         Return a `str` based on success of deletion, `OK` on success, otherwise an error message.
         """
-        return self.__client.request('delete', '/forms/%s/webhooks/%s' % (uid,tag))
+        return self.__client.request('delete', '/forms/%s/webhooks/%s' % (uid, tag))
