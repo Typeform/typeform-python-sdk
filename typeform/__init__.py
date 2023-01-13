@@ -1,4 +1,5 @@
 from .forms import Forms
+from .themes import Themes
 from .responses import Responses
 from .client import Client
 
@@ -12,11 +13,16 @@ class Typeform:
         """Constructor for Typeform API client"""
         client = Client(token, headers=headers)
         self.__forms = Forms(client)
+        self.__themes = Themes(client)
         self.__responses = Responses(client)
 
     @property
     def forms(self) -> Forms:
         return self.__forms
+
+    @property
+    def themes(self) -> Themes:
+        return self.__themes
 
     @property
     def responses(self) -> Responses:
