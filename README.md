@@ -13,6 +13,7 @@ Python Client wrapper for [Typeform API](https://developer.typeform.com/)
   - [Create Client](#typeformapi_key)
   - [Forms](#forms)
   - [Responses](#responses)
+  - [Themes](#themes)
 - [Tests](#tests)
 
 ## Installation
@@ -150,6 +151,27 @@ responses = Typeform('<api_key>').responses
 result: str = responses.delete('abc123' 'token1')
 result: str = responses.delete('abc123' ['token2', 'token3'])
 ```
+
+### Themes
+
+#### `themes.get(uid: str)`
+
+Retrieves a theme by the given theme_id. [See docs](https://developer.typeform.com/create/reference/retrieve-theme/).
+
+```python
+themes = Typeform('<api_key>').themes
+result: dict = themes.get('abc123')
+```
+
+#### `themes.list(page: int = None, pageSize: int = None)`
+
+Retrieves a list of JSON descriptions for all themes in your Typeform account (public and private). Themes are listed in reverse-chronological order based on the date you added them to your account.
+
+```python
+themes = Typeform('<api_key>').themes
+result: dict = themes.list()
+```
+
 
 ## Tests
 
