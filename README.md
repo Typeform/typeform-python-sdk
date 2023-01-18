@@ -14,6 +14,7 @@ Python Client wrapper for [Typeform API](https://developer.typeform.com/)
   - [Forms](#forms)
   - [Responses](#responses)
   - [Themes](#themes)
+  - [Images](#images)
 - [Tests](#tests)
 
 ## Installation
@@ -169,8 +170,34 @@ Retrieves a list of JSON descriptions for all themes in your Typeform account (p
 
 ```python
 themes = Typeform('<api_key>').themes
-result: dict = themes.list()
+result: dict = themes.get('abc123')
 ```
+
+### Images
+
+#### `images.get(uid: str)`
+
+Retrieves an image by the given id. [See docs](https://developer.typeform.com/create/reference/retrieve-image).
+
+```python
+images = Typeform('<api_key>').images
+result: dict = images.get('abc123')
+```
+
+#### `images.list()`
+
+Retrieves a list of JSON descriptions for all images in your Typeform account. Images are listed in reverse-chronological order based on the date you added them to your account.
+
+```python
+images = Typeform('<api_key>').images
+result: dict = images.list()
+```
+
+#### `images.upload(file_name : str, image : str = None, url : str = None)`
+
+Adds an image in your Typeform account.
+
+Specify the URL of your image or send your image in base64 format, which encodes the image data as ASCII text. You can use a tool like Base64 Image Encoder to get the base64 code for the image you want to add.
 
 
 ## Tests

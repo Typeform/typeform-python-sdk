@@ -13,7 +13,7 @@ class Images:
         return self.__messages
 
     def get(self, uid: str) -> dict:
-        """Retrieves an image by the given form_id."""
+        """Retrieves an image by the given id."""
 
         return self.__client.request('get', '/images/%s' % uid)
 
