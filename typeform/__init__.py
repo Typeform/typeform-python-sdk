@@ -1,5 +1,6 @@
 from .forms import Forms
 from .themes import Themes
+from .images import Images
 from .responses import Responses
 from .client import Client
 
@@ -14,6 +15,7 @@ class Typeform:
         client = Client(token, headers=headers)
         self.__forms = Forms(client)
         self.__themes = Themes(client)
+        self.__images = Images(client)
         self.__responses = Responses(client)
 
     @property
@@ -23,6 +25,10 @@ class Typeform:
     @property
     def themes(self) -> Themes:
         return self.__themes
+
+    @property
+    def images(self) -> Images:
+        return self.__images
 
     @property
     def responses(self) -> Responses:
