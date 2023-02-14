@@ -19,10 +19,7 @@ class FormsTestCase(TestCase):
 
     def tearDown(self):
         if not MOCK:
-            list = self.forms.list(workspaceId=WORKSPACE_ID)
-            forms = list.get('items', [])
-            for form in forms:
-                self.forms.delete(form.get('id'))
+            self.forms.delete(self.formID)
 
     def test_forms_returns_method_and_path(self):
         """
