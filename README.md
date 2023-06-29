@@ -1,3 +1,9 @@
+### IMPORTANT NOTE
+
+⚠️ **This library hasn't been maintained for a while so we've decided to deprecate it and archive the repository. Feel free to fork it!** 
+
+---
+
 # typeform
 
 [![PyPI version](https://badge.fury.io/py/typeform.svg)](https://badge.fury.io/py/typeform) [![Build Status](https://travis-ci.org/MichaelSolati/typeform-python-sdk.svg?branch=master)](https://travis-ci.org/MichaelSolati/typeform-python-sdk) [![Coverage Status](https://coveralls.io/repos/github/MichaelSolati/typeform-python-sdk/badge.svg?branch=master)](https://coveralls.io/github/MichaelSolati/typeform-python-sdk?branch=master)
