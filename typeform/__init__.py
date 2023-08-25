@@ -2,6 +2,7 @@ from .forms import Forms
 from .themes import Themes
 from .images import Images
 from .responses import Responses
+from .webhooks import Webhooks
 from .client import Client
 
 __all__ = ['Typeform']
@@ -17,6 +18,7 @@ class Typeform:
         self.__themes = Themes(client)
         self.__images = Images(client)
         self.__responses = Responses(client)
+        self.__webhooks = Webhooks(client)
 
     @property
     def forms(self) -> Forms:
@@ -33,3 +35,7 @@ class Typeform:
     @property
     def responses(self) -> Responses:
         return self.__responses
+
+    @property
+    def webhooks(self) -> Webhooks:
+        return self.__webhooks
