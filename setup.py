@@ -13,7 +13,7 @@ setup(
         'type',
         'form',
         'typeform',
-        'api',
+        'api'
     ],
     author='Typeform',
     author_email='michael.solati@typeform.com',
@@ -32,6 +32,6 @@ setup(
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python',
+        'Programming Language :: Python'
     ]
 )
