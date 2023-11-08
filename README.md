@@ -49,7 +49,7 @@ pip install typeform
 
 ``` python
   # will retrieve all forms
-  forms: dict = typeform.forms.list()
+  forms_dict: dict = typeform.forms.list()
 ```
 
 ## Reference
